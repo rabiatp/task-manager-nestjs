@@ -1,4 +1,3 @@
-// users/users.service.ts
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "prisma/prisma.service";
 import { UpdateChildDto } from "src/auth/dto/children.dto";

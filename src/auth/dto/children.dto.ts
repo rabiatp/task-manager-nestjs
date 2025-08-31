@@ -14,5 +14,5 @@ export class UpdateChildDto {
     // "YYYY-MM-DD" gibi ISO tarih bekliyoruz
     @IsOptional()
     @IsISO8601()
-    birthdate?: string; // string al, service içinde Date'e çevir
+    birthdate?: string;
 }

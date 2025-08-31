@@ -1,4 +1,3 @@
-// src/auth/dto/register.dto.ts
 import { IsDateString, IsEmail, IsIn, IsNotEmpty, MinLength, IsUUID, ValidateIf } from 'class-validator';
 
 export const ROLE_VALUES = ['PARENT', 'TEEN', 'CHILD'] as const;

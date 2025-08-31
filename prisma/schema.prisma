@@ -42,7 +42,7 @@ model User {
 
   // RELATIONS
   createdSprints Sprint[]         @relation("SprintCreator")
-  createdTasks   Task[]           @relation("TaskCreator") // <— DİZİ OLMALI
+  createdTasks   Task[]           @relation("TaskCreator") 
   assignments    TaskAssignment[]
 
   @@index([parentId])

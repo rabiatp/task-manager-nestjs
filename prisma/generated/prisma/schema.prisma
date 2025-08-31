@@ -36,7 +36,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // ⬇⬇⬇ Parent–Child (self relation)
+  // Parent–Child (self relation)
   parentId String?
   parent   User?   @relation("UserParent", fields: [parentId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   children User[]  @relation("UserParent")
@@ -78,7 +78,7 @@ model Task {
 
   // One-to-many: bir User, birden çok Task oluşturabilir.
   creator   User   @relation("TaskCreator", fields: [creatorId], references: [id])
-  creatorId String // DİKKAT: @unique EKLEME!
+  creatorId String
 
   assignees TaskAssignment[]
 }

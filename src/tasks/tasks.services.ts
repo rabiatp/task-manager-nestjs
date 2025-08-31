@@ -37,7 +37,7 @@ export class TasksService {
                 description: dto.description,
                 sprintId: dto.sprintId,
                 priority: dto.priority ?? "MEDIUM",
-                creatorId: userId, // ŞEMAYLA UYUMLU
+                creatorId: userId,
             },
             select: this.select,
         });

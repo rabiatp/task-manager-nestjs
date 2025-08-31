@@ -21,7 +21,7 @@ export class AuthService {
         } else {
             if (!dto.parentId) throw new BadRequestException('parentId is required for TEEN/CHILD');
 
-            // (ÖNERİLEN doğrulama) parent var mı ve gerçekten PARENT mı?
+            // parent var mı ve gerçekten PARENT mı?
             const parent = await this.prisma.user.findUnique({
                 where: { id: dto.parentId },
                 select: { role: true },
