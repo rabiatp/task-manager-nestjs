@@ -13,14 +13,15 @@ export class TasksService {
         assignees: { select: { userId: true } },
     } as const;
 
-    list(sprintId?: string) {
+    list({ sprintId, status, page, limit }) {
         return this.prisma.task.findMany({
-            where: { ...(sprintId ? { sprintId } : {}) },
-            orderBy: { updatedAt: "desc" },
+            where: { ...(sprintId && { sprintId }), ...(status && { status }) },
+            orderBy: { updatedAt: 'desc' },
+            skip: (page - 1) * limit,
+            take: limit,
             select: this.select,
         });
     }
-
     async get(id: string) {
         const t = await this.prisma.task.findUnique({ where: { id }, select: this.select });
         if (!t) throw new NotFoundException("Task not found");

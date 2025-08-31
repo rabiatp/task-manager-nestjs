@@ -3,14 +3,19 @@ import { AuthGuard } from "@nestjs/passport";
 import { CurrentUser } from "../common/current-user.decorator";
 import { TasksService } from "./tasks.services";
 import { CreateTaskDto, UpdateTaskDto } from "./dto/task.dto";
+import { TaskStatus } from "@prisma/client";
 
 @UseGuards(AuthGuard("jwt"))
 @Controller("tasks")
 export class TasksController {
     constructor(private service: TasksService) { }
 
+    //Duruma göre listeleme
     @Get()
-    list(@Query("sprintId") sprintId?: string) { return this.service.list(sprintId); }
+    list(@Query('sprintId') s?: string, @Query('status') status?: TaskStatus,
+        @Query('page') page = 1, @Query('limit') limit = 20) {
+        return this.service.list({ sprintId: s, status, page: +page, limit: +limit });
+    }
 
     @Get(":id")
     get(@Param("id", new ParseUUIDPipe()) id: string) { return this.service.get(id); }

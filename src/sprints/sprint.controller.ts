@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, UseGuards } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query, UseGuards } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { SprintService } from "./sprints.service";
 import { CurrentUser } from "src/common/current-user.decorator";
 import { CreateSprintDto, UpdateSprintDto } from "./dto/sprint.dto";
+import { TaskStatus } from "@prisma/client";
 
 @UseGuards(AuthGuard('jwt'))
 @Controller("sprints")
