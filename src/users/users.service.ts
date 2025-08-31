@@ -14,6 +14,20 @@ export class UsersService {
         });
         return profile;
     }
+    //-- user ve ona bağlı childları getirecek 
+    async userAndChilds(userId: string) {
+        const list = await this.prisma.user.findMany({
+            where: {
+                OR: [
+                    { id: userId },        // parent
+                    { parentId: userId },  // children
+                ],
+            },
+            select: { id: true, name: true, email: true },
+            orderBy: { name: "asc" },
+        });
+        return list;
+    }
     async getChild(parentId: string, id: string) {
         const child = await this.prisma.user.findFirst({
             where: { id, parentId }, // sahiplik kontrolü

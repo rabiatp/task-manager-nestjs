@@ -77,7 +77,7 @@ model Task {
 
   // One-to-many: bir User, birden çok Task oluşturabilir.
   creator   User   @relation("TaskCreator", fields: [creatorId], references: [id])
-  creatorId String // DİKKAT: @unique EKLEME!
+  creatorId String
 
   assignees TaskAssignment[]
 }

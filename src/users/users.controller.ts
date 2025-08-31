@@ -14,6 +14,12 @@ export class UsersController {
     }
 
     @UseGuards(AuthGuard('jwt'))
+    @Get()
+    allUsers(@Req() req: any) {
+        return this.users.userAndChilds(req.user.userId);
+
+    }
+    @UseGuards(AuthGuard('jwt'))
     @Get('children')
     listenChildren(@Req() req: any) {
         if (req.user.role !== 'PARENT') {
